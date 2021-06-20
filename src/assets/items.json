@@ -1,0 +1,34 @@
+{
+  "usersItems": [
+    {
+      "userId": 1,
+      "itemsList": [
+        {
+          "id": 1,
+          "title": "First item",
+          "content": "This is first item of user A"
+        },
+        {
+          "id": 2,
+          "title": "Second item",
+          "content": "This is second item of user A"
+        }
+      ]
+    },
+    {
+      "userId": 2,
+      "itemsList": [
+        {
+          "id": 3,
+          "title": "First item",
+          "content": "This is first item of user B"
+        },
+        {
+          "id": 4,
+          "title": "Second item",
+          "content": "This is second item of user B"
+        }
+      ]
+    }
+  ]
+}

@@ -10,10 +10,7 @@ import { Store } from '@ngrx/store';
 })
 export class UserApiService {
 
-  constructor(
-    private httpService: HttpClient,
-    private store: Store
-  ) {
+  constructor(private httpService: HttpClient) {
   }
 
   getUsers(): Observable<User[]> {
