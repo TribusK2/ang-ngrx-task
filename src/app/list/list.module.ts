@@ -10,6 +10,7 @@ import { ListEffects } from './store/list.effects';
 
 @NgModule({
   declarations: [ListItemsComponent],
+  exports: [ListItemsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
