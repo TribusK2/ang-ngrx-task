@@ -23,7 +23,7 @@ import { ListModule } from './list/list.module';
     UserModule,
     ListModule,
     FormsModule,
-    StoreModule.forRoot({ users: reducer, items: listReducer }, {  }),
+    StoreModule.forRoot({ users: reducer, list: listReducer }, {  }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],

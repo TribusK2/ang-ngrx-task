@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { UserItems } from '../models/user-items.model';
 import * as ListActions from './list.actions';
 
-export const usersFeatureKey = 'users';
+export const listFeatureKey = 'list';
 
 export interface State {
   items: UserItems[];
