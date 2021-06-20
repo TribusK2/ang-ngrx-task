@@ -5,24 +5,28 @@ import {User} from '../models/user.model';
 export const usersFeatureKey = 'users';
 
 export interface State {
-  users: { [key: number]: User };
+  users: User[];
   currentUserId?: number;
 }
 
 export const initialState: State = {
-  users: {
-    1: {
-      id: 1,
-      name: 'User1'
-    },
-    2: {
-      id: 2,
-      name: 'User2'
-
-    }
-  },
-  currentUserId: 1
+  users: undefined,
+  currentUserId: undefined
 };
+// export const initialState: State = {
+//   users: {
+//     1: {
+//       id: 1,
+//       name: 'User1'
+//     },
+//     2: {
+//       id: 2,
+//       name: 'User2'
+
+//     }
+//   },
+//   currentUserId: 1
+// };
 
 
 export const reducer = createReducer(

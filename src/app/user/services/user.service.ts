@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Store } from '@ngrx/store';
 import { loadUsers, switchUser } from '../store/users.actions';
-import { selectCurrentUser, selectUsers } from '../store/users.selectors';
+import { selectCurrentUser } from '../store/users.selectors';
+import { UserApiService } from './user-api.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,13 @@ export class UserService {
 
   constructor(
     private store: Store,
+    private userApiService: UserApiService
   ) {
   }
 
   getUsers(): Observable<User[]> {
-    return this.store.select(selectUsers);
+    return this.userApiService.getUsers();
+    // return this.store.select(selectUsers);
   }
 
   switchUser(id: number): void {

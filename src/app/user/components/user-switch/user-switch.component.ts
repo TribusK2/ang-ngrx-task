@@ -9,15 +9,20 @@ import {UserService} from '../../services/user.service';
 })
 export class UserSwitchComponent implements OnInit {
   users: User[];
+  initSelection: number;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUsers()
-      .subscribe((users) => this.users = users);
+      .subscribe((users) => {
+        this.users = users
+        this.initSelection = users[0].id
+      });
   }
 
-  selectUser(id: number): void {
-    this.userService.switchUser(id);
+  selectUser(id: string): void {
+    const idNumber = Number(id);
+    this.userService.switchUser(idNumber);
   }
 }
