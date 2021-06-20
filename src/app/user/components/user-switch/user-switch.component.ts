@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/user.model';
-import {UserService} from '../../services/user.service';
+import { User } from '../../models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-switch',
@@ -17,7 +17,7 @@ export class UserSwitchComponent implements OnInit {
     this.userService.getUsers()
       .subscribe((users) => {
         this.users = users
-        this.initSelection = users[0].id
+        if (users) this.initSelection = users[0].id
       });
   }
 

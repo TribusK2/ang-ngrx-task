@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Store } from '@ngrx/store';
-import { loadUsers, switchUser } from '../store/users.actions';
-import { selectCurrentUser } from '../store/users.selectors';
-import { UserApiService } from './user-api.service';
-import { tap } from 'rxjs/operators';
+import { switchUser } from '../store/users.actions';
+import { selectCurrentUser, selectUsers } from '../store/users.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +11,16 @@ import { tap } from 'rxjs/operators';
 export class UserService {
 
   constructor(
-    private store: Store,
-    private userApiService: UserApiService
+    private store: Store
   ) {
   }
 
   getUsers(): Observable<User[]> {
-    return this.userApiService.getUsers();
-    // return this.store.select(selectUsers);
+    return this.store.select(selectUsers);
   }
 
   switchUser(id: number): void {
-    this.store.dispatch(switchUser({id}));
+    this.store.dispatch(switchUser({ id }));
   }
 
   getCurrentUser(): Observable<User> {

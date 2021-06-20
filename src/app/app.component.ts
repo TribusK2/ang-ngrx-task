@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {UserService} from './user/services/user.service';
+import { Store } from '@ngrx/store';
+import { UserService } from './user/services/user.service';
+import { loadUsers } from './user/store/users.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,13 @@ export class AppComponent {
     'listItem3',
   ];
 
-  constructor(public userService: UserService) {
+  constructor(
+    public userService: UserService,
+    private store: Store
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(loadUsers());
   }
 }

@@ -5,10 +5,10 @@ export const selectUserstate = createFeatureSelector<fromUsers.State>(
   fromUsers.usersFeatureKey
 );
 
-// export const selectUsers = createSelector(
-//   selectUserstate,
-//   state => state.users,
-// );
+export const selectUsers = createSelector(
+  selectUserstate,
+  state => state.users,
+);
 
 export const selectCurrentUser = createSelector(
   selectUserstate,
