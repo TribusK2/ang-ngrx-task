@@ -19,6 +19,16 @@ export const listReducer = createReducer(
   on(ListActions.loadItemsSuccess, (state, { items }) => ({
     ...state,
     items
-  }))
+  })),
+
+  on(ListActions.addUserItem, (state, { itemsList, userId }) => ({
+    ...state,
+    items: (() => {
+      let items = [...state.items];
+      const updatedItemIndex = items.findIndex(item => item.userId === userId);
+      items.splice(updatedItemIndex, 1, { userId, itemsList })
+      return items;
+    })()
+  })),
 );
 

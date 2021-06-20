@@ -20,4 +20,8 @@ export class ListItemsComponent implements OnInit {
     );
   }
 
+  addUserItem(): void {
+    this.listService.addUserItem([]).subscribe();
+  }
+
 }

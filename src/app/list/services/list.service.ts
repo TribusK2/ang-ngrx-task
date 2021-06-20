@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NEVER, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { first, map, switchMap, tap } from 'rxjs/operators';
 
 import { selectCurrentUser } from 'src/app/user/store/users.selectors';
+import { Item } from '../models/item.model';
 import { UserItems } from '../models/user-items.model';
+import { addUserItem } from '../store/list.actions';
 import { selectItems } from '../store/list.selectors';
 
 @Injectable({
@@ -27,6 +29,16 @@ export class ListService {
         } else {
           return NEVER
         }
+      })
+    );
+  }
+
+  addUserItem(itemsList: Item[]): Observable<any> {
+    return this.store.select(selectCurrentUser).pipe(
+      first(),
+      tap(res => {
+        const currentUserId = res?.id;
+        this.store.dispatch(addUserItem({ itemsList, userId: currentUserId }))
       })
     );
   }
