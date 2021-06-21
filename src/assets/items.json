@@ -6,12 +6,12 @@
         {
           "id": 1,
           "title": "First item",
-          "content": "This is first item of user A"
+          "content": "This is the first item of the user A"
         },
         {
           "id": 2,
           "title": "Second item",
-          "content": "This is second item of user A"
+          "content": "This is the second item of the user A"
         }
       ]
     },
@@ -21,12 +21,12 @@
         {
           "id": 3,
           "title": "First item",
-          "content": "This is first item of user B"
+          "content": "This is the first item of the user B"
         },
         {
           "id": 4,
           "title": "Second item",
-          "content": "This is second item of user B"
+          "content": "This is the second item of the user B"
         }
       ]
     }

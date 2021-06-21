@@ -8,18 +8,35 @@
       <div class="input-group-append">
         <button class="btn btn-outline-dark" type="button" (click)="addUserItem()">Add item</button>
       </div>
-
     </div>
   </form>
   <table class="table table-sm">
     <thead class="thead-light">
       <tr>
-        <th scope="col" class="col-4">Title</th>
-        <th scope="col" class="col-8">Content</th>
+        <th scope="col" class="cursorPointer userSelectNone col-4" (click)="sortItems('title')">
+          <div class="d-flex justify-content-between">
+            <span>Title</span>
+            <div class="mx-2" *ngIf="sortingColumn === 'title'">
+              <div class="arrow" [ngClass]="{'arrow--down': descendingDirection}">
+                <i class="arrow__icon"></i>
+              </div>
+            </div>
+          </div>
+        </th>
+        <th scope="col" class="cursorPointer userSelectNone col-8" (click)="sortItems('content')">
+          <div class="d-flex justify-content-between">
+            <span>Content</span>
+            <div class="mx-2" *ngIf="sortingColumn === 'content'">
+              <div class="arrow" [ngClass]="{'arrow--down': descendingDirection}">
+                <i class="arrow__icon"></i>
+              </div>
+            </div>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of userItems$ | async">
+      <tr *ngFor="let item of itemsList">
         <td>{{item.title}}</td>
         <td>{{item.content}}</td>
       </tr>
