@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { NEVER, Observable, of } from 'rxjs';
+import { NEVER, Observable } from 'rxjs';
 import { first, map, switchMap, tap } from 'rxjs/operators';
 
 import { selectCurrentUser } from 'src/app/user/store/users.selectors';

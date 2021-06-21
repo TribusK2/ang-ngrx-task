@@ -1,14 +1,13 @@
-// import { reducer, initialState } from './list.reducer';
+import { listReducer, initialState } from './list.reducer';
 
 describe('List Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
-      pending()
-      // const action = {} as any;
+      const action = {} as any;
 
-      // const result = reducer(initialState, action);
+      const result = listReducer(initialState, action);
 
-      // expect(result).toBe(initialState);
+      expect(result).toBe(initialState);
     });
   });
 });
