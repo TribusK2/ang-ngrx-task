@@ -27,7 +27,6 @@ export class ListApiService {
           if (maxId > maxItemsId) maxItemsId = maxId;
         }
         this.listService.lastItemId = maxItemsId;
-        console.log(maxItemsId)
         return res.usersItems
       })
     );
