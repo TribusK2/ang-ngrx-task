@@ -51,7 +51,7 @@ export class ListItemsComponent implements OnInit, OnDestroy {
   addUserItem(): void {
     if (this.userItemsForm.valid) {
       const newItem = <Item>this.userItemsForm.value;
-      newItem.id = this.listService.lastItemId; // 'id' should be solved by backend
+      newItem.id = this.listService.lastItemId + 1; // 'id' should be solved by backend
       this.listService.incrementLastItemId();
       const newItemList = [...this.itemsList, newItem]
       this.listService.addUserItem(newItemList).subscribe();

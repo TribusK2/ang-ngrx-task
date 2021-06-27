@@ -13,7 +13,7 @@ import { selectItems } from '../store/list.selectors';
   providedIn: 'root'
 })
 export class ListService {
-  public lastItemId = 4; // Mocked Id instead of covered by backend
+  public lastItemId: number; // Mocked Id instead of covered by backend
 
   constructor(private store: Store) { }
 
