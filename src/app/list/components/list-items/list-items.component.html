@@ -1,10 +1,8 @@
 <div class="col-12 col-sm-10 col-md-9 col-lg-8 col-xl-7 mr-auto ml-auto">
   <form [formGroup]="userItemsForm">
     <div class="input-group input-group-sm my-3">
-      <input type="text" formControlName="title" id="titleInput" class="form-control col-4" placeholder="Title"
-             [ngClass]="{'is-invalid': userItemsForm.controls.title.touched && userItemsForm.controls.title.hasError('required')}">
-      <input type="text" formControlName="content" id="contentInput" class="form-control col-8" placeholder="Content"
-             [ngClass]="{'is-invalid': userItemsForm.controls.content.touched && userItemsForm.controls.content.hasError('required')}">
+      <input type="text" formControlName="title" id="titleInput" class="form-control col-4" placeholder="Title">
+      <input type="text" formControlName="content" id="contentInput" class="form-control col-8" placeholder="Content">
       <div class="input-group-append">
         <button class="btn btn-outline-dark" type="button" (click)="addUserItem()">Add item</button>
       </div>
@@ -33,12 +31,18 @@
             </div>
           </div>
         </th>
+        <th scope="col" class="userSelectNone col-8">
+          <span>Actions</span>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of itemsList">
         <td>{{item.title}}</td>
         <td>{{item.content}}</td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="removeItem(item)">&#10005;</button>
+        </td>
       </tr>
     </tbody>
   </table>

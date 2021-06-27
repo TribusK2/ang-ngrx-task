@@ -13,6 +13,7 @@ import { selectItems } from '../store/list.selectors';
   providedIn: 'root'
 })
 export class ListService {
+  public lastItemId = 4; // Mocked Id instead of covered by backend
 
   constructor(private store: Store) { }
 
@@ -41,5 +42,9 @@ export class ListService {
         this.store.dispatch(addUserItem({ itemsList, userId: currentUserId }))
       })
     );
+  }
+
+  incrementLastItemId():void {
+    this.lastItemId = this.lastItemId + 1;
   }
 }

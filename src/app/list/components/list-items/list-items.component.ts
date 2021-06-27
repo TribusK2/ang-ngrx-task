@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { Item } from '../../models/item.model';
 import { ListService } from '../../services/list.service';
+import { removeItem } from '../../store/list.actions';
 
 @Component({
   selector: 'app-list-items',
@@ -17,16 +19,19 @@ export class ListItemsComponent implements OnInit, OnDestroy {
   public itemsList: Item[];
   public sortingColumn: string;
   private descendingDirection = false;
+  private userId: number;
 
   constructor(
     private listService: ListService,
     private _formBuilder: FormBuilder,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
     this.userItemsForm = this.initForm();
     this.userItems$ = this.listService.getUserItems().pipe(
       map(res => {
+        this.userId = res?.userId;
         this.descendingDirection = false;
         this.sortingColumn = undefined;
         return res ? res.itemsList : [];
@@ -45,7 +50,9 @@ export class ListItemsComponent implements OnInit, OnDestroy {
 
   addUserItem(): void {
     if (this.userItemsForm.valid) {
-      const newItem = <Item>this.userItemsForm.value; // 'id' should be solved by backend
+      const newItem = <Item>this.userItemsForm.value;
+      newItem.id = this.listService.lastItemId; // 'id' should be solved by backend
+      this.listService.incrementLastItemId();
       const newItemList = [...this.itemsList, newItem]
       this.listService.addUserItem(newItemList).subscribe();
       this.userItemsForm.reset();
@@ -70,6 +77,10 @@ export class ListItemsComponent implements OnInit, OnDestroy {
         this.itemsList.sort((a, b) => (a[column] > b[column]) ? 1 : ((b[column] > a[column]) ? -1 : 0))
       }
     }
+  }
+
+  removeItem(item: Item): void {
+    if (item.id) this.store.dispatch(removeItem({itemId: item.id, userId: this.userId}));
   }
 
   ngOnDestroy(): void {

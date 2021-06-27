@@ -30,5 +30,18 @@ export const listReducer = createReducer(
       return items;
     })()
   })),
+
+  on(ListActions.removeItem, (state, { itemId, userId }) => ({
+    ...state,
+    items: (() => {
+      const items = [...state.items];
+      const updatedUserIndex = items.findIndex(item => item.userId === userId);
+      const updatedItemIndex = items[updatedUserIndex].itemsList.findIndex(item => item.id === itemId);
+      const itemsList = [...state.items[updatedUserIndex].itemsList];
+      itemsList.splice(updatedItemIndex, 1);
+      items.splice(updatedUserIndex, 1, { userId, itemsList })
+      return items;
+    })()
+  })),
 );
 

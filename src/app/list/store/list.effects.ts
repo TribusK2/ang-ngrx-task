@@ -4,7 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 import { loadUsers } from 'src/app/user/store/users.actions';
 import { ListApiService } from '../services/list-api.service';
-import { loadItemsSuccess } from './list.actions';
+import { addUserItem, loadItemsSuccess } from './list.actions';
 
 
 @Injectable()
@@ -14,6 +14,11 @@ export class ListEffects {
     ofType(loadUsers),
     switchMap(() => this.listApiService.getItems()),
     map((items) => loadItemsSuccess({ items })),
+  ));
+
+  addUserItem$ = createEffect(() => this.actions$.pipe(
+    ofType(addUserItem),
+    switchMap(() => this.listApiService.addItem())
   ));
 
   constructor(

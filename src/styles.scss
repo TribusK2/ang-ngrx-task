@@ -8,3 +8,7 @@
 .userSelectNone {
   user-select: none;
 }
+
+.ng-invalid.ng-touched {
+  @extend .is-invalid
+}

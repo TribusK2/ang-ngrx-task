@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 
 import { ItemsResponse } from '../models/items-response.model';
@@ -18,5 +18,11 @@ export class ListApiService {
       delay(1000), // To simulate request response time
       map(res => res.usersItems)
     );
+  }
+  
+  addItem(): Observable<any> {
+    return EMPTY.pipe(
+      delay(1000)
+    )
   }
 }
